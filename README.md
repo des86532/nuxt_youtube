@@ -16,5 +16,16 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+## Features
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+- [] RWD
+- [] PWA
+- [] use firebase
+- [] use mongo DB
+- [] unit test
+
+## Todo List
+
+- [] add youtube api
+- [] favorite page
+- [] floating window like twitch
