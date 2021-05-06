@@ -18,14 +18,17 @@ $ npm run generate
 ```
 ## Features
 
-- [] RWD
-- [] PWA
-- [] use firebase
-- [] use mongo DB
-- [] unit test
+- [ ] RWD
+- [ ] PWA
+- [ ] use firebase
+- [ ] use mongo DB
+- [ ] unit test
+- [ ] github circleCI
+- [ ] bot
+- [ ] third party login
 
 ## Todo List
 
-- [] add youtube api
-- [] favorite page
-- [] floating window like twitch
+- [ ] add youtube api
+- [ ] favorite page
+- [ ] floating window like twitch
