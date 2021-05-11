@@ -11,7 +11,8 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.15.3/css/all.css' }
     ]
   },
 
@@ -30,7 +31,18 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    '@nuxtjs/tailwindcss',
   ],
+
+  // plugins config
+  tailwindcss: {
+    // cssPath: '~/assets/css/tailwind.css',
+    // configPath: 'tailwind.config.js',
+    jit: true,
+    // exposeConfig: false,
+    // config: {}
+    viewer: true
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
