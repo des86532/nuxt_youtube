@@ -10,7 +10,9 @@
     "tailwind-config-viewer": "tailwind-config-viewer -o"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.1",
     "core-js": "^3.9.1",
+    "express": "^4.17.1",
     "nuxt": "^2.15.3",
     "pug": "^3.0.2",
     "vue-avatar": "^2.3.3"
