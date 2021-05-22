@@ -1,12 +1,10 @@
 const express = require('express');
-
 const app = express();
 
-app.get('/thirdLogin', (req, res) => {
-  res.send('123')
-})
+const auth = require('./routes/auth');
+
+app.use('/api', auth)
 
 module.exports = {
-  path: 'api',
   handler: app
 };

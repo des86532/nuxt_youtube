@@ -30,7 +30,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/axios',
+    '~/plugins/axios-accessor.ts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,7 +42,7 @@ export default {
   },
   serverMiddleware: {
     // API middleware
-    '/': '@/server/index.js',
+    '/': '@/server/index.ts',
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -67,7 +67,8 @@ export default {
   },
 
   axios: {
-    baseURL: 'http://localhost:8000', // Used as fallback if no runtime config is provided
+    // baseURL: '', // Used as fallback if no runtime config is provided
+    browserBaseURL: 'http://localhost:8000',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

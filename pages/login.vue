@@ -7,7 +7,7 @@
         .block.border.mb-4
           input.w-full.h-full.p-4(id="password" type="password" placeholder="請輸入密碼")
       .block
-        Button.mb-4.w-full.bg-red-600(text="登入")
+        Button.mb-4.w-full.bg-red-600(text="登入" @click="login")
         Button.mb-4.w-full.bg-yellow-800(text="註冊")
       .block.text-2xl
         Button(v-for="item in socials" :key="item.name" :text="item.name" class="w-1/2" :class="item.class" @click="thirdLogin(item.name)")
@@ -16,42 +16,45 @@
 <script lang="ts">
 import Button from '@/components/Button.vue'
 
+const socials = [
+  {
+    name: 'google',
+    class: 'bg-green-600',
+  },
+  {
+    name: 'facebook',
+    class: 'bg-blue-500',
+  },
+  {
+    name: 'github',
+    class: 'bg-black',
+  },
+  {
+    name: 'twitter',
+    class: 'bg-indigo-800',
+  },
+]
+
 export default {
   components: {
     Button,
   },
   data() {
     return {
-      socials: [
-        {
-          name: 'google',
-          class: 'bg-green-600',
-        },
-        {
-          name: 'facebook',
-          class: 'bg-blue-500',
-        },
-        {
-          name: 'github',
-          class: 'bg-black',
-        },
-        {
-          name: 'twitter',
-          class: 'bg-indigo-800',
-        },
-      ]
+      socials,
+      form: {
+        account: '',
+        password: '',
+      }
     }
   },
   methods: {
+    login() {
+      this.$store.dispatch('login', this.form);
+    },
     thirdLogin(type: string) {
       console.log(type);
     },
   },
-  created() {
-    this.$axios.get('/api/thirdLogin').then((res) => {
-      console.log('222')
-      console.log(res)
-    })
-  }
 }
 </script>
