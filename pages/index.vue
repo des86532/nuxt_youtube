@@ -1,6 +1,17 @@
 <template>
   <div>
     <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
+    <Logo />
   </div>
 </template>
 

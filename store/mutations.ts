@@ -1,5 +1,5 @@
 export default {
-  increment(state: any) {
-    state.counter++
+  toggleSidebar(state: any) {
+    state.isSidebarOpen = !state.isSidebarOpen
   }
 }

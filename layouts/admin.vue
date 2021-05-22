@@ -1,9 +1,9 @@
 <template lang="pug">
-  div
+  .relative.h-screen
     Header
-    .flex
+    .flex.flex-grow.h-full.pt-14
       Sidebar
-      Nuxt
+      Nuxt.h-full.w-full.overflow-auto
 </template>
 
 <script lang="ts">
@@ -14,6 +14,6 @@ export default {
     components: {
         Header,
         Sidebar
-    }
+    },
 }
 </script>

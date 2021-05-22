@@ -1,3 +1,3 @@
 export default () => ({
-  test: 123
+  isSidebarOpen: false
 })
