@@ -13,7 +13,7 @@
         Button(v-for="item in socials" :key="item.name" :text="item.name" class="w-1/2" :class="item.class" @click="thirdLogin(item.name)")
 </template>
 
-<script lang="ts">
+<script>
 import Button from '@/components/Button.vue'
 
 const socials = [
@@ -52,8 +52,8 @@ export default {
     login() {
       this.$store.dispatch('login', this.form);
     },
-    thirdLogin(type: string) {
-      console.log(type);
+    thirdLogin(type) {
+      this.$store.dispatch('thirdLogin', type);
     },
   },
 }

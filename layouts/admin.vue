@@ -6,7 +6,7 @@
       Nuxt.h-full.w-full.overflow-auto
 </template>
 
-<script lang="ts">
+<script>
 import Header from '@/components/Header.vue';
 import Sidebar from '@/components/Sidebar.vue';
 

@@ -1,5 +1,3 @@
-import { $axios } from '~/utils/api'
-
 export default {
   // nuxtServerInit ({ commit }, { req }) {
   //   // if (req.session.user) {
@@ -7,13 +5,14 @@ export default {
   //   // }
   //   // console.log(req)
   // },
-  login({ commit }: any, data: any) {
-    $axios.post('/api/login').then((res) => {
+  login({ commit }, data) {
+    console.log(data)
+    this.$axios.$post('/api/login').then((res) => {
       console.log(res);
     })
   },
 
-  thirdLogin() {
-
+  thirdLogin({ commit }, data) {
+    console.log(data)
   },
 }

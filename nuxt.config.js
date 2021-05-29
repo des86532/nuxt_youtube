@@ -26,11 +26,11 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/scss/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/axios-accessor.ts',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,7 +42,7 @@ export default {
   },
   serverMiddleware: {
     // API middleware
-    '/': '@/server/index.ts',
+    '/': '@/server/index.js',
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -52,7 +52,6 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
   ],
 

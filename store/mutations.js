@@ -1,5 +1,5 @@
 export default {
-  toggleSidebar(state: any) {
+  toggleSidebar(state) {
     state.isSidebarOpen = !state.isSidebarOpen
   }
 }

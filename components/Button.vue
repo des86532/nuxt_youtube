@@ -2,7 +2,7 @@
   button.rounded.border.outline-none.py-3.text-white(type="text" @click="onClick") {{ text }}
 </template>
 
-<script lang="ts">
+<script>
 export default {
   props: {
     text: {
