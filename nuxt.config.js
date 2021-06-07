@@ -3,19 +3,24 @@ export default {
   head: {
     title: 'nuxt_youtube',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
+      itemscope: true,
+      itemtype: 'http://schema.org/Article'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
+      { name: 'google-signin-client_id', content: '748419381762-0edvmckcmv5hf576m9ved8ccot05o35j.apps.googleusercontent.com' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.15.3/css/all.css' }
     ],
     script: [
-      // { src: 'https://apis.google.com/js/platform.js', async: true, defer: true }
+      // google login
+      // { src: '//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' },
+      { src: 'https://apis.google.com/js/client:platform.js', async: true, defer: true }
     ]
   },
 
@@ -30,8 +35,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="test">
     <Logo />
     <Logo />
     <Logo />
@@ -18,5 +18,10 @@
 <script>
 export default {
   layout: 'admin',
+  methods: {
+    test() {
+      $nuxt.$router.push({ name: 'login' })
+    }
+  }
 }
 </script>
