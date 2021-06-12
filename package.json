@@ -11,12 +11,17 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
+    "bcrypt": "^5.0.1",
     "core-js": "^3.9.1",
+    "element-ui": "^2.15.2",
     "express": "^4.17.1",
+    "firebase": "^8.6.5",
     "google-auth-library": "^7.1.1",
+    "jsonwebtoken": "^8.5.1",
     "nuxt": "^2.15.3",
     "pug": "^3.0.2",
     "request-promise": "^4.2.6",
+    "svg-captcha": "^1.4.0",
     "vue-avatar": "^2.3.3"
   },
   "devDependencies": {

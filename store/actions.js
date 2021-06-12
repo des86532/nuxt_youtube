@@ -1,3 +1,5 @@
+import { Message } from "element-ui"
+
 export default {
   // nuxtServerInit ({ commit }, { req }) {
   //   // if (req.session.user) {
@@ -6,9 +8,9 @@ export default {
   //   // console.log(req)
   // },
   login({ commit }, data) {
-    console.log(data)
-    this.$axios.$post('/api/login').then((res) => {
-      console.log(res);
+    this.$axios.$post('/login', data).then((res) => {
+      localStorage.token = res.data.token
+      $nuxt.$router.push({ name: 'index' })
     })
   },
 
@@ -28,7 +30,7 @@ export default {
             token = auth2.currentUser.get().getAuthResponse().id_token;
           });
 
-          this.$axios.$post('/api/googleLogin', {
+          this.$axios.$post('/googleLogin', {
             client_id,
             token
           }).then((res) => {
@@ -36,6 +38,21 @@ export default {
           })
         })
       break;
+    }
+  },
+
+  async register({ dispatch }, data) {
+    const { account, password } = data
+    const { code: isAvailable } = await this.$axios.$get('/checkAccount', { params: { account }})
+    if (isAvailable)  {
+      const { code, message } = await this.$axios.$post('/register', data)
+      if (code === 200) {
+        Message.success('註冊成功')
+        dispatch('login', {
+          account,
+          password
+        })
+      }
     }
   },
 }

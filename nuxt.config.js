@@ -31,11 +31,15 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/scss/main.scss'
+    '~/assets/scss/main.scss',
+    'element-ui/lib/theme-chalk/index.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    '~/plugins/axios.js',
+    '~/plugins/firebase.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -44,6 +48,7 @@ export default {
   server: {
     port: 8000,
   },
+
   serverMiddleware: {
     // API middleware
     '/': '@/server/index.js',
@@ -70,8 +75,8 @@ export default {
   },
 
   axios: {
-    // baseURL: '', // Used as fallback if no runtime config is provided
-    browserBaseURL: 'http://localhost:8000',
+    baseURL: process.env.API_HOST || 'http://localhost:8000/api',
+    browserBaseURL: process.env.API_HOST || 'http://localhost:8000/api'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

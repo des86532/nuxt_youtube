@@ -1,3 +1,13 @@
 .caret-white {
   caret-color: white;
 }
+
+
+// tailwind
+@tailwind base;
+
+@layer base {
+  input {
+    @apply focus:outline-none;
+  }
+}

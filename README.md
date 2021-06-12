@@ -26,9 +26,16 @@ $ npm run generate
 - [ ] github circleCI
 - [ ] bot
 - [ ] third party login
+  - [ ] google
+  - [ ] faceboook
+  - [ ] github
+  - [ ] twitter
 
 ## Todo List
 
+- [ ] login
+- [ ] register
+- [ ] forget password
 - [ ] add youtube api
 - [ ] favorite page
 - [ ] floating window like twitch
