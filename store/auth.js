@@ -1,17 +1,17 @@
 import { Message } from "element-ui"
 
-export default {
-  // nuxtServerInit ({ commit }, { req }) {
-  //   // if (req.session.user) {
-  //   //   commit('user', req.session.user)
-  //   // }
-  //   // console.log(req)
-  // },
-  login({ commit }, data) {
-    this.$axios.$post('/login', data).then((res) => {
+export const state = () => ({
+  token: '',
+})
+
+export const actions = {
+  async login({ dispatch, commit }, data) {
+    await this.$axios.$post('/login', data).then((res) => {
       localStorage.token = res.data.token
-      $nuxt.$router.push({ name: 'index' })
+      commit('auth/setToken', res.data.token , { root: true })
     })
+    await dispatch('user/getUserInfo', {}, { root: true })
+    $nuxt.$router.push({ name: 'index' })
   },
 
   thirdLogin({ commit }, type) {
@@ -55,4 +55,19 @@ export default {
       }
     }
   },
+
+  logout({ commit }) {
+    commit('removeToken')
+    commit('toggleSidebar', false, { root: true })
+  },
+}
+
+export const mutations = {
+  setToken(state, token) {
+    state.token = token ? token : ''
+  },
+  removeToken(state) {
+    state.token = ''
+    localStorage.removeItem('token')
+  }
 }

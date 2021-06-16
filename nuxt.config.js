@@ -49,6 +49,10 @@ export default {
     port: 8000,
   },
 
+  router: {
+    middleware: ['auth']
+  },
+
   serverMiddleware: {
     // API middleware
     '/': '@/server/index.js',

@@ -10,8 +10,10 @@
         .search-bar
           input.w-full.outline-none.px-2.rounded-sm.bg-gray-700.border.border-gray-100.placeholder-gray-400.caret-white(type="text" v-model="searchText" placeholder="搜尋" class="py-0.5")
     .right-nav.px-2.cursor-pointer
-      slot(name="right")
-        avatar(username="Jane Doe" :size="32")
+      client-only
+        slot(name="right")
+          avatar(:username="username" :size="32" v-if="isLogin")
+          nuxt-link.text-black.bg-yellow-50.p-1(to="/login" v-else) 登入
 </template>
 
 <script>
@@ -19,17 +21,31 @@ import Avatar from 'vue-avatar';
 
 export default {
   components: {
-    Avatar,
+    avatar: Avatar
+  },
+  props: {
+    username: {
+      type: String,
+      require: false,
+    }
   },
   data() {
     return {
       searchText: '',
     }
   },
+  computed: {
+    isLogin() {
+      return this.$store.state.auth.token.length > 0
+    },
+    isSidebarOpen() {
+      return this.$store.state.isSidebarOpen
+    }
+  },
   methods: {
     toggleSidebar() {
-      this.$store.commit('toggleSidebar')
-    }
+      this.$store.commit('toggleSidebar', !this.isSidebarOpen)
+    },
   },
 }
 </script>

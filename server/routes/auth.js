@@ -3,7 +3,6 @@ import firebase from '../../plugins/firebase'
 import svgCaptcha from 'svg-captcha' // 驗證碼
 import bcrypt from 'bcrypt' // 加密
 import jwt from 'jsonwebtoken'
-// import request from 'request-promise';
 
 const router = express.Router();
 router.use(express.json())
@@ -79,7 +78,7 @@ router.post('/login', (req, res) => {
   firebase.database().ref().child("users").child(account).get().then((snapshot) => {
     if (snapshot.exists() && bcrypt.compareSync(password, snapshot.val().password)) {
       // 建立 Token
-      const token = jwt.sign({ account: account.toString() }, SECRET, { expiresIn: '1 day' })
+      const token = jwt.sign({ account: account.toString() }, SECRET, { expiresIn: '1h' })
       res.status(200).json({ code: 200, message: 'success', data: { token } })
     } else {
       res.status(200).json({ code: 400, message: '帳號密碼錯誤' })

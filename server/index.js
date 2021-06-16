@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 
 const auth = require('./routes/auth');
+const user = require('./routes/user');
 
 app.use('/api', auth)
+app.use('/api', user)
 
 module.exports = {
   handler: app

@@ -1,6 +1,6 @@
 import { Message } from "element-ui"
 
-export default function ({ $axios, redirect }) {
+export default function ({ $axios, redirect, store }) {
   $axios.onRequest(config => {
     if (process.browser && localStorage.token) {
       config.headers.Authorization = `Bearer ${localStorage.token}`
@@ -14,9 +14,12 @@ export default function ({ $axios, redirect }) {
   })
 
   $axios.onError(error => {
-    const code = error.code
-    if (code === 400) {
+    if (error.code === 400) {
       Message.error(error.message)
+    } else if (error.response.status === 401 || error.response.status === 403) {
+      store.dispatch('auth/logout')
+      Message.error('請重新登入')
+      redirect('/login')
     }
   })
 }

@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$store.dispatch('register', this.form);
+      this.$store.dispatch('auth/register', this.form);
     },
     async changeCaptcha() {
       const result = await this.$axios.$get('/captcha')
@@ -46,8 +46,8 @@ export default {
     }
   },
   async asyncData({ $axios }) {
-    const captcha = await $axios.$get('/captcha')
-    return { captcha: captcha.data }
+    const res = await $axios.$get('/captcha')
+    return { captcha: res.data }
   }
 }
 </script>

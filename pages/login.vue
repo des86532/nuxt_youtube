@@ -14,7 +14,6 @@
 </template>
 
 <script>
-// import firebase from '@/plugins/firebase.js'
 import Button from '@/components/Button.vue'
 
 const socials = [
@@ -55,10 +54,10 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch('login', this.form);
+      this.$store.dispatch('auth/login', this.form);
     },
     thirdLogin(type) {
-      this.$store.dispatch('thirdLogin', type);
+      this.$store.dispatch('auth/thirdLogin', type);
     },
     register() {
       $nuxt.$router.push({ name: 'register' })
