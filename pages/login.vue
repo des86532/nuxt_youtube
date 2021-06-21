@@ -1,6 +1,6 @@
 <template lang="pug">
   .text-center.relative.my-0.mx-auto(class="top-1/4 w-1/2")
-    .inline-block
+    .inline-block(class="w-3/4")
       form.block.text-lg(@submit.prevent="login")
         .block.border.mb-4
           input.w-full.h-full.p-4(id="account" type="text" placeholder="請輸入帳號" v-model="form.account" required)
@@ -9,8 +9,8 @@
         .block
           Button.mb-4.w-full.bg-red-600(type="submit" text="登入")
           Button.mb-4.w-full.bg-yellow-800(text="註冊" @click="register")
-      .block.text-2xl
-        Button(v-for="item in socials" :key="item.name" :ref="item.id" :text="item.name" class="w-1/2" :class="item.class" @click="thirdLogin(item.name)")
+      //- .block.text-2xl
+      //-   Button(v-for="item in socials" :key="item.name" :ref="item.id" :text="item.name" class="w-1/2" :class="item.class" @click="thirdLogin(item.name)")
 </template>
 
 <script>
@@ -47,8 +47,8 @@ export default {
     return {
       socials,
       form: {
-        account: '',
-        password: '',
+        account: 'neilyang',
+        password: 'qwer1234',
       }
     }
   },

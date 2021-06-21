@@ -28,6 +28,8 @@ export const actions = {
 
           await auth2.signIn().then(function(res) {
             token = auth2.currentUser.get().getAuthResponse().id_token;
+            // get access_token 用來取得需要個人信息的資料
+            // console.log(auth2.currentUser.get().getAuthResponse().access_token)
           });
 
           this.$axios.$post('/googleLogin', {

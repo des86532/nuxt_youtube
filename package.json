@@ -20,6 +20,8 @@
     "jsonwebtoken": "^8.5.1",
     "nuxt": "^2.15.3",
     "pug": "^3.0.2",
+    "qs": "^6.10.1",
+    "querystring": "^0.2.0",
     "request-promise": "^4.2.6",
     "svg-captcha": "^1.4.0",
     "vue-avatar": "^2.3.3"

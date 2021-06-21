@@ -102,7 +102,9 @@ router.post('/googleLogin', (req, res) => {
   }
 
   verify().then(() => {
-    res.status(200).json({ code: 200, message: 'success', data: {} })
+    res.status(200).json({ code: 200, message: 'success', data: {
+      access_token: token
+    }})
   }).catch((err) => {
     res.status(400).json({ code: 998, message: err.message })
   });

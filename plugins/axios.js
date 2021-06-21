@@ -2,9 +2,10 @@ import { Message } from "element-ui"
 
 export default function ({ $axios, redirect, store }) {
   $axios.onRequest(config => {
-    if (process.browser && localStorage.token) {
-      config.headers.Authorization = `Bearer ${localStorage.token}`
-    }
+    // console.log(config)
+    // if (process.browser && localStorage.token) {
+    //   config.headers.Authorization = `Bearer ${localStorage.token}`
+    // }
   })
 
   $axios.onResponse(response => {

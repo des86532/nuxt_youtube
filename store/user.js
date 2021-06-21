@@ -10,6 +10,7 @@ export const mutations = {
 
 export const actions = {
   async getUserInfo({ commit }) {
+    this.$axios.setToken(localStorage.token, 'Bearer')
     await this.$axios.$get('/user').then(async (res) => {
       await commit('setUserInfo', res.data)
     })

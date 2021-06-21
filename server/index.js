@@ -3,9 +3,11 @@ const app = express();
 
 const auth = require('./routes/auth');
 const user = require('./routes/user');
+const list = require('./routes/list');
 
 app.use('/api', auth)
 app.use('/api', user)
+app.use('/api', list)
 
 module.exports = {
   handler: app
