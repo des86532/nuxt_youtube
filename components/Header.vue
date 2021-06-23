@@ -8,7 +8,7 @@
     .center-nav.flex-auto.mx-2
       slot(name="center")
         .search-bar
-          input.w-full.outline-none.px-2.rounded-sm.bg-gray-700.border.border-gray-100.placeholder-gray-400.caret-white(type="text" v-model="searchText" placeholder="搜尋" class="py-0.5")
+          input.w-full.outline-none.px-2.rounded-sm.bg-gray-700.border.border-gray-100.placeholder-gray-400.caret-white.text-white(type="text" v-model="searchText" placeholder="搜尋" class="py-0.5" @keyup.enter="onSearch")
     .right-nav.px-2.cursor-pointer
       client-only
         slot(name="right")
@@ -46,6 +46,9 @@ export default {
     toggleSidebar() {
       this.$store.commit('toggleSidebar', !this.isSidebarOpen)
     },
+    onSearch() {
+      this.$store.dispatch('list/getSearchList', this.searchText)
+    }
   },
 }
 </script>

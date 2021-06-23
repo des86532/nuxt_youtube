@@ -75,7 +75,7 @@ export default {
     jit: true,
     // exposeConfig: false,
     // config: {}
-    viewer: true
+    viewer: true,
   },
 
   axios: {
