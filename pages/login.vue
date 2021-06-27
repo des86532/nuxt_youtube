@@ -7,8 +7,8 @@
         .block.border.mb-4
           input.w-full.h-full.p-4(id="password" type="password" placeholder="請輸入密碼" v-model="form.password" required)
         .block
-          Button.mb-4.w-full.bg-red-600(type="submit" text="登入")
-          Button.mb-4.w-full.bg-yellow-800(text="註冊" @click="register")
+          Button.mb-4.w-full.bg-red-600(type="submit" text="登入" )
+          Button.mb-4.w-full.bg-yellow-800(type="button" text="註冊" @click="register")
       //- .block.text-2xl
       //-   Button(v-for="item in socials" :key="item.name" :ref="item.id" :text="item.name" class="w-1/2" :class="item.class" @click="thirdLogin(item.name)")
 </template>

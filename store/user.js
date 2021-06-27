@@ -15,4 +15,10 @@ export const actions = {
       await commit('setUserInfo', res.data)
     })
   },
+
+  async refreshUserInfo({ commit }) {
+    await this.$axios.$get('/user').then((res) => {
+      commit('setUserInfo', res.data)
+    })
+  },
 }

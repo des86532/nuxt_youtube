@@ -26,6 +26,7 @@ export default {
     if (localStorage.token) {
       await this.$store.commit('auth/setToken', localStorage.token)
       await this.$store.dispatch('user/getUserInfo')
+      await this.$store.dispatch('list/getFavoriteList')
     }
   },
   fetchOnServer: false,

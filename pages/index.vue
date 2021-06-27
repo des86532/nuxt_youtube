@@ -1,6 +1,7 @@
 <template lang="pug">
   .grid.grid-cols-1.pt-8.px-6.gap-x-4.gap-y-6(class="tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4")
-    Card(v-for="video in videoList.items" :key="video.tag" :video="video" @click="goWatch(video.id)" @add-like="addLike")
+    client-only(placeholder="loading")
+      Card(v-for="video in videoList.items" :key="video.id" :video="video" @click="goWatch(video.id)" @addLike="updateLikeStatus(video.id)" :liked="checkLiked(video.id)")
 </template>
 
 <script>
@@ -11,21 +12,33 @@ export default {
   components: {
     Card,
   },
+  data() {
+    return {
+      videoList: {},
+    }
+  },
   computed: {
-    videoList() {
-      return this.$store.state.list.videoList
+    userInfo() {
+      return this.$store.state.user.userInfo
     }
   },
   methods: {
-    goWatch(id) {
-      $nuxt.$router.push({ name: 'watch' })
+    checkLiked(id) {
+      if (this.userInfo.likeList) {
+        return this.userInfo.likeList.includes(id)
+      }
+      return false
     },
-    addLike() {
-      console.log('222')
+    goWatch(id) {
+      $nuxt.$router.push({ name: 'watch', query: { id } })
+    },
+    updateLikeStatus(id) {
+      this.$store.dispatch('list/updateVideoFavorite', id)
     },
   },
-  async fetch() {
-    await this.$store.dispatch('list/getVideoList')
+  async asyncData({ store }) {
+    const data = await store.dispatch('list/getVideoList')
+    return { videoList: data }
   },
 }
 </script>

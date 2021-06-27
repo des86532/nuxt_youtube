@@ -47,13 +47,14 @@ router.get('/checkAccount', (req, res) => {
 router.post('/register', (req, res) => {
   const { account, password, verifyCode, username, email } = req.body;
   if (verifyCode !== captchaCode) {
-    res.status(400).json({ code: 400, message: `驗證碼錯誤` }).end()
+    return res.status(200).json({ code: 400, message: `驗證碼錯誤` })
   }
 
   // 加密
   const hashPassword = bcrypt.hashSync(password, saltRounds);
 
   firebase.database().ref(`users/${account}`).set({
+    account,
     username,
     password: hashPassword,
     email,
@@ -84,7 +85,7 @@ router.post('/login', (req, res) => {
       res.status(200).json({ code: 400, message: '帳號密碼錯誤' })
     }
   }).catch((error) => {
-    res.status(200).json({ code: 999, message: error.message })
+    res.status(200).json({ code: 400, message: '帳號密碼錯誤' })
   });
 })
 
@@ -96,8 +97,8 @@ router.post('/googleLogin', (req, res) => {
 
   async function verify() {
     const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: '748419381762-0edvmckcmv5hf576m9ved8ccot05o35j.apps.googleusercontent.com',
+      idToken: token,
+      audience: '748419381762-0edvmckcmv5hf576m9ved8ccot05o35j.apps.googleusercontent.com',
     });
   }
 

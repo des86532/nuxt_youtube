@@ -20,22 +20,22 @@ $ npm run generate
 
 - [ ] RWD
 - [ ] PWA
-- [ ] use firebase
+- [X] use firebase
 - [ ] use mongo DB
 - [ ] unit test
 - [ ] github circleCI
 - [ ] bot
 - [ ] third party login
-  - [ ] google
+  - [X] google
   - [ ] faceboook
   - [ ] github
   - [ ] twitter
 
 ## Todo List
 
-- [ ] login
-- [ ] register
+- [X] login
+- [X] register
 - [ ] forget password
-- [ ] add youtube api
+- [X] add youtube api
 - [ ] favorite page
 - [ ] floating window like twitch

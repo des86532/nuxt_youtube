@@ -3,7 +3,7 @@ export const state = () => ({
 })
 
 export const actions = {
-  async nuxtServerInit ({ commit }) {
+  async nuxtServerInit (store) {
   },
 }
 
