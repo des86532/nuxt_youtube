@@ -12,6 +12,7 @@ export default {
   components: {
     Card,
   },
+  middleware: ['auth'],
   methods: {
     goWatch(id) {
       $nuxt.$router.push({ name: 'watch', query: { id } })

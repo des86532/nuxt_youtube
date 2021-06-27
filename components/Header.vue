@@ -48,6 +48,7 @@ export default {
     },
     onSearch() {
       this.$store.dispatch('list/getSearchList', this.searchText)
+      $nuxt.$router.push({ name: 'search', query: { v: this.searchText }})
     }
   },
 }

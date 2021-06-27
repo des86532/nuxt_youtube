@@ -43,19 +43,22 @@ export const actions = {
   },
 
   async getSearchList({ commit }, searchText) {
-    await this.$axios.$get('https://www.googleapis.com/youtube/v3/search', {
-      headers: {
-        Authorization: '',
-      },
-      params: {
-        part: 'snippet',
-        key: API_KEY,
-        q: searchText,
-        regionCode: 'tw',
-      },
-      paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),
-    }).then((res) => {
-      commit('setSearchList', res)
+    return new Promise((resolve, reject) => {
+      this.$axios.$get('https://www.googleapis.com/youtube/v3/search', {
+        headers: {
+          Authorization: '',
+        },
+        params: {
+          part: 'snippet',
+          key: API_KEY,
+          q: searchText,
+          regionCode: 'tw',
+        },
+        paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),
+      }).then((res) => {
+        resolve(res)
+        commit('setSearchList', res)
+      })
     })
   },
 
