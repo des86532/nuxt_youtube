@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="{'sidebar' : sidebarFixed}")
+  .z-10(:class="{'sidebar' : sidebarFixed}")
     .h-full.bg-gray-700.transition-width.duration-300.relative.pb-14.z-10(:class="isSidebarOpen ? 'w-48' : 'w-0'")
       .overflow-auto.h-full
         nuxt-link.block.text-red-400.py-2.px-6.whitespace-nowrap(class="hover:bg-gray-300" :class="[{'bg-gray-300': link.key === $nuxt.$route.name }]" v-for="link in links" :key="link.key" :to="link.url") {{ link.name }} 

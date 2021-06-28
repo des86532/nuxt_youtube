@@ -53,6 +53,7 @@ export const actions = {
           key: API_KEY,
           q: searchText,
           regionCode: 'tw',
+          maxResults: 10,
         },
         paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),
       }).then((res) => {

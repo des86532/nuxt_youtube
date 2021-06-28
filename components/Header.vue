@@ -47,8 +47,11 @@ export default {
       this.$store.commit('toggleSidebar', !this.isSidebarOpen)
     },
     onSearch() {
-      this.$store.dispatch('list/getSearchList', this.searchText)
-      $nuxt.$router.push({ name: 'search', query: { v: this.searchText }})
+      if (this.$route.name === 'search') {
+        this.$store.dispatch('list/getSearchList', this.searchText)
+      } else {
+        $nuxt.$router.push({ name: 'search', query: { v: this.searchText }})
+      }
     }
   },
 }
