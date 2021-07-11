@@ -1,8 +1,9 @@
 <template lang="pug">
   .relative.h-screen
-    Header(:username="userInfo.username" v-if="!$fetchState.pending")
+    Header(:username="userInfo.username")
     .flex.flex-grow.h-full.pt-14
-      Sidebar
+      client-only
+        Sidebar(:isMobile="isMobile")
       Nuxt.h-full.w-full.overflow-auto
 </template>
 
@@ -17,18 +18,12 @@ export default {
   },
 
   computed: {
+    isMobile() {
+      return this.$store.state.isMobile
+    },
     userInfo() {
       return this.$store.state.user.userInfo
-    }
-  },
-
-  async fetch() {
-    if (localStorage.token) {
-      await this.$store.commit('auth/setToken', localStorage.token)
-      await this.$store.dispatch('user/getUserInfo')
-      await this.$store.dispatch('list/getFavoriteList')
-    }
-  },
-  fetchOnServer: false,
+    },
+  }
 }
 </script>

@@ -54,5 +54,8 @@ export default {
       }
     }
   },
+  fetch() {
+    this.searchText = this.$nuxt.$route.query.v ? this.$nuxt.$route.query.v : ''
+  }
 }
 </script>

@@ -1,6 +1,6 @@
 <template lang="pug">
-  .text-center.relative.my-0.mx-auto(class="top-1/4 w-1/2")
-    .inline-block(class="w-3/4")
+  .text-center.relative.my-0.mx-auto.w-full(class="top-1/4 pad:w-3/4 tablet:w-1/2")
+    .inline-block.w-full.max-w-xs(class="tablet:max-w-md")
       form.block.text-lg(@submit.prevent="login")
         .block.border.mb-4
           input.w-full.h-full.p-4(id="account" type="text" placeholder="請輸入帳號" v-model="form.account" required)

@@ -1,7 +1,7 @@
 <template lang="pug">
   .grid.grid-cols-1.gap-x-2.px-6.pt-10.overflow-auto.max-w-5xl.my-0.mx-auto(class="tablet:block pad:grid-cols-2")
     template(v-if="list.items.length > 0")
-      RowCard.mb-4(v-for="video in list.items" :key="video.id.videoId" :video="video" @click="goWatch(video.id.videoId)")
+      RowCard.mb-4(v-for="video in list.items" :key="video.id.videoId" :video="video" v-show="video.snippet.liveBroadcastContent === 'none'" @click="goWatch(video.id.videoId)")
     template(v-else)
       span 沒有資料
 </template>
