@@ -11,7 +11,7 @@ export const actions = {
       commit('auth/setToken', res.data.token , { root: true })
     })
     await dispatch('user/getUserInfo', {}, { root: true })
-    $nuxt.$router.push({ name: 'index' })
+    $nuxt.$router.replace({ name: 'index' })
   },
 
   thirdLogin({ commit }, type) {
