@@ -1,5 +1,5 @@
 <template lang="pug">
-  .cursor-pointer.w-full
+  .card.cursor-pointer.w-full
     .w-full(@click="onClick")
       picture
         //- source(v-if="video.snippet.thumbnails.high" :srcset="video.snippet.thumbnails.high.url" media="(min-width: 1024px)")

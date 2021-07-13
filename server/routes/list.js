@@ -5,24 +5,23 @@ import jwt from 'jsonwebtoken'
 const router = express.Router()
 router.use(express.json())
 
-const API_KEY = 'AIzaSyAqNjCDwR3gxEIrslaQkqih368n8OkpRo4'
 const SECRET = 'aaabbb'
 
 const checkAuth = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
-      const token = authHeader.split(' ')[1];
+    const token = authHeader.split(' ')[1];
 
-      jwt.verify(token, SECRET, (err, user) => {
-          if (err) {
-              return res.sendStatus(403);
-          }
-          req.user = user;
-          next();
-      });
+    jwt.verify(token, SECRET, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      next();
+    });
   } else {
-      res.sendStatus(401);
+    return res.sendStatus(401);
   }
 };
 

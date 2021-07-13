@@ -3,25 +3,17 @@ import qs from 'qs'
 const API_KEY = 'AIzaSyAqNjCDwR3gxEIrslaQkqih368n8OkpRo4'
 
 export const state = () => ({
-  videoList: {},
-  searchList: {},
   favoriteList: {},
 })
 
 export const mutations = {
-  setVideoList(state, payload) {
-    state.videoList = payload
-  },
-  setSearchList(state, payload) {
-    state.searchList = payload
-  },
   setFavoriteList(state, payload) {
     state.favoriteList = payload
   }
 }
 
 export const actions = {
-  async getVideoList({ commit }) {
+  async getVideoList({ commit }, pageToken) {
     return new Promise((resolve, reject) => {
       this.$axios.$get('https://www.googleapis.com/youtube/v3/videos', {
         headers: {
@@ -31,18 +23,18 @@ export const actions = {
           part: ['contentDetails', 'liveStreamingDetails', 'localizations', 'player' ,'recordingDetails' , 'snippet', 'statistics', 'status'],
           chart: 'mostPopular',
           regionCode: 'tw',
-          maxResults: 50,
+          maxResults: 20,
           key: API_KEY,
+          pageToken
         },
         paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),
       }).then((res) => {
-        commit('setVideoList', res)
         resolve(res)
       })
     })
   },
 
-  async getSearchList({ commit }, searchText) {
+  async getSearchList({ commit }, { searchText, pageToken }) {
     return new Promise((resolve, reject) => {
       this.$axios.$get('https://www.googleapis.com/youtube/v3/search', {
         headers: {
@@ -53,12 +45,12 @@ export const actions = {
           key: API_KEY,
           q: searchText,
           regionCode: 'tw',
-          maxResults: 10,
+          maxResults: 20,
+          pageToken
         },
         paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),
       }).then((res) => {
         resolve(res)
-        commit('setSearchList', res)
       })
     })
   },
@@ -72,7 +64,7 @@ export const actions = {
         id: rootState.user.userInfo.likeList,
         part: ['contentDetails', 'liveStreamingDetails', 'localizations', 'player' ,'recordingDetails' , 'snippet', 'statistics', 'status'],
         regionCode: 'tw',
-        maxResults: 50,
+        maxResults: 20,
         key: API_KEY,
       },
       paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),

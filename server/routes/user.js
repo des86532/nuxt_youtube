@@ -15,13 +15,13 @@ const checkAuth = (req, res, next) => {
 
       jwt.verify(token, SECRET, (err, user) => {
           if (err) {
-              return res.sendStatus(403);
+            return res.status(200).json({ code: 403, message: '權限不足', data: {} });
           }
           req.user = user;
           next();
       });
   } else {
-      res.sendStatus(401);
+    return res.status(200).json({ code: 401, message: '沒有身份', data: {} });
   }
 };
 

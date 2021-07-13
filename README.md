@@ -18,13 +18,15 @@ $ npm run generate
 ```
 ## Features
 
-- [ ] RWD
+- [X] RWD
 - [ ] PWA
 - [X] use firebase
 - [ ] use mongo DB
 - [ ] unit test
 - [ ] github circleCI
 - [ ] bot
+- [ ] infinite scroll
+- [ ] floating window like twitch
 - [ ] third party login
   - [X] google
   - [ ] faceboook
@@ -37,5 +39,5 @@ $ npm run generate
 - [X] register
 - [ ] forget password
 - [X] add youtube api
-- [ ] favorite page
-- [ ] floating window like twitch
+- [X] favorite page
+- [ ] bug: 401 & 403 error redirect login

@@ -1,7 +1,7 @@
 <template lang="pug">
   .grid.grid-cols-1.pt-8.px-6.gap-x-4.gap-y-6(class="tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4")
-    client-only(placeholder="loading")
-      Card(v-for="video in videoList.items" :key="video.id" :video="video" @click="goWatch(video.id)" @addLike="updateLikeStatus(video.id)" :liked="checkLiked(video.id)")
+    Card(v-for="video in videoList" :key="video.id" :video="video" @click="goWatch(video.id)" @addLike="updateLikeStatus(video.id)" :liked="checkLiked(video.id)")
+    #infinite-detective
 </template>
 
 <script>
@@ -11,11 +11,6 @@ export default {
   layout: 'admin',
   components: {
     Card,
-  },
-  data() {
-    return {
-      videoList: {},
-    }
   },
   computed: {
     userInfo() {
@@ -35,10 +30,46 @@ export default {
     updateLikeStatus(id) {
       this.$store.dispatch('list/updateVideoFavorite', id)
     },
+    async nextPage() {
+      const { nextPageToken, items } = await this.$store.dispatch('list/getVideoList', this.nextPageToken)
+      this.nextPageToken = nextPageToken
+      this.videoList = [...this.videoList, ...items]
+    },
+    observer() {
+      const target = document.getElementById('infinite-detective')
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((item) => {
+          if (item.isIntersecting) {
+            this.nextPage()
+          }
+        })
+
+        if (this.videoList.length >= this.pageInfo.totalResults) {
+          observer.unobserve(target)
+        }
+      })
+
+      observer.observe(target)
+    }
+  },
+  mounted() {
+    this.observer()
   },
   async asyncData({ store }) {
     const data = await store.dispatch('list/getVideoList')
-    return { videoList: data }
+    return { 
+      videoList: data.items,
+      nextPageToken: data.nextPageToken,
+      pageInfo: data.pageInfo
+    }
   },
 }
 </script>
+
+<style lang="scss" scoped>
+  #infinite-detective {
+    width: 100%;
+    height: 1px;
+  }
+</style>
