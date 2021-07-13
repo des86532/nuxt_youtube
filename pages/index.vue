@@ -57,11 +57,11 @@ export default {
     this.observer()
   },
   async asyncData({ store }) {
-    const data = await store.dispatch('list/getVideoList')
+    const { items, nextPageToken, pageInfo } = await store.dispatch('list/getVideoList')
     return { 
-      videoList: data.items,
-      nextPageToken: data.nextPageToken,
-      pageInfo: data.pageInfo
+      videoList: items,
+      nextPageToken: nextPageToken,
+      pageInfo: pageInfo
     }
   },
 }

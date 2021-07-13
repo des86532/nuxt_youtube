@@ -1,6 +1,6 @@
 import { Message } from "element-ui"
 import qs from 'qs'
-const API_KEY = 'AIzaSyAqNjCDwR3gxEIrslaQkqih368n8OkpRo4'
+const API_KEY = 'AIzaSyD-642vUf7UgsK2Zx3EKvJg4ZFORvBAuyM'
 
 export const state = () => ({
   favoriteList: {},
@@ -45,7 +45,7 @@ export const actions = {
           key: API_KEY,
           q: searchText,
           regionCode: 'tw',
-          maxResults: 20,
+          maxResults: 10,
           pageToken
         },
         paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),

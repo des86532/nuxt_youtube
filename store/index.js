@@ -8,9 +8,12 @@ export const actions = {
     await dispatch('checkIsMobile')
 
     if (localStorage.token) {
-      await commit('auth/setToken', localStorage.token)
-      await dispatch('user/getUserInfo')
-      await dispatch('list/getFavoriteList')
+      try {
+        await commit('auth/setToken', localStorage.token)
+        await dispatch('user/getUserInfo')
+        await dispatch('list/getFavoriteList')
+      } catch(err) {
+      }
     }
   },
   async nuxtServerInit (store) {

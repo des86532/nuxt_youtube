@@ -48,14 +48,14 @@ export default {
     },
     onSearch() {
       if (this.$route.name === 'search') {
-        this.$store.dispatch('list/getSearchList', this.searchText)
+        this.$router.replace({ name: 'search', query: { v: this.searchText }})
       } else {
-        $nuxt.$router.push({ name: 'search', query: { v: this.searchText }})
+        this.$router.push({ name: 'search', query: { v: this.searchText }})
       }
     }
   },
   fetch() {
-    this.searchText = this.$nuxt.$route.query.v ? this.$nuxt.$route.query.v : ''
+    this.searchText = this.$route.query.v ? this.$route.query.v : ''
   }
 }
 </script>
