@@ -6,21 +6,24 @@ export const state = () => ({
 
 export const actions = {
   async login({ dispatch, commit }, data) {
-    await this.$axios.$post('/login', data).then((res) => {
-      localStorage.token = res.data.token
-      commit('auth/setToken', res.data.token , { root: true })
+    await this.$axios.$post('/login', data).then(async (res) => {
+      if (res.code === 200) {
+        localStorage.token = res.data.token
+        commit('auth/setToken', res.data.token , { root: true })
+        await dispatch('user/getUserInfo', {}, { root: true })
+        $nuxt.$router.replace({ name: 'index' })
+      }
     })
-    await dispatch('user/getUserInfo', {}, { root: true })
-    $nuxt.$router.replace({ name: 'index' })
   },
 
-  thirdLogin({ commit }, type) {
+  thirdLogin({ dispatch, commit }, type) {
     switch (type) {
       case 'google':
         const client_id = '748419381762-0edvmckcmv5hf576m9ved8ccot05o35j.apps.googleusercontent.com'
         let token;
         gapi.load('auth2', async () => {
           let auth2 = await gapi.auth2.init({
+            prompt: 'select_account',
             client_id,
             // Scopes to request in addition to 'profile' and 'email'
             scope: 'profile'
@@ -28,16 +31,18 @@ export const actions = {
 
           await auth2.signIn().then(function(res) {
             token = auth2.currentUser.get().getAuthResponse().id_token;
-            // get access_token 用來取得需要個人信息的資料
-            // console.log(auth2.currentUser.get().getAuthResponse().access_token)
           });
 
-          this.$axios.$post('/googleLogin', {
+          const result = await this.$axios.$post('/googleLogin', {
             client_id,
-            token
-          }).then((res) => {
-            $nuxt.$router.push({ name: 'index' })
+            id_token: token
           })
+
+          localStorage.token = result.data.token
+          commit('auth/setToken', result.data.token , { root: true })
+
+          await dispatch('user/getUserInfo', {}, { root: true })
+          $nuxt.$router.replace({ name: 'index' })
         })
       break;
     }
@@ -46,7 +51,7 @@ export const actions = {
   async register({ dispatch }, data) {
     const { account, password } = data
     const { code: isAvailable } = await this.$axios.$get('/checkAccount', { params: { account }})
-    if (isAvailable)  {
+    if (isAvailable === 200)  {
       const { code, message } = await this.$axios.$post('/register', data)
       if (code === 200) {
         Message.success('註冊成功')

@@ -3,6 +3,7 @@ import firebase from '../../plugins/firebase'
 import svgCaptcha from 'svg-captcha' // 驗證碼
 import bcrypt from 'bcrypt' // 加密
 import jwt from 'jsonwebtoken'
+import rp from 'request-promise'
 
 const router = express.Router();
 router.use(express.json())
@@ -58,6 +59,7 @@ router.post('/register', (req, res) => {
     username,
     password: hashPassword,
     email,
+    likeList: ''
   }).then(() => {
     res.status(200).json({ code: 200, message: 'success', data: {} })
   }).catch((error) => {
@@ -90,22 +92,51 @@ router.post('/login', (req, res) => {
 })
 
 // third party
-router.post('/googleLogin', (req, res) => {
-  const { token } = req.body
+router.post('/googleLogin', async (req, res) => {
+  const { id_token } = req.body
   const { OAuth2Client } = require('google-auth-library')
   const client = new OAuth2Client('748419381762-0edvmckcmv5hf576m9ved8ccot05o35j.apps.googleusercontent.com');
 
   async function verify() {
     const ticket = await client.verifyIdToken({
-      idToken: token,
+      idToken: id_token,
       audience: '748419381762-0edvmckcmv5hf576m9ved8ccot05o35j.apps.googleusercontent.com',
     });
   }
 
-  verify().then(() => {
-    res.status(200).json({ code: 200, message: 'success', data: {
-      access_token: token
-    }})
+  verify().then(async () => {
+    // 拿到帳號個人信息
+    let userInfo = await rp({
+      method: 'get',
+      url: `https://oauth2.googleapis.com/tokeninfo?id_token=${id_token}`,
+    })
+
+    userInfo = JSON.parse(userInfo)
+
+    const payload = {
+      account: `google_${userInfo.sub}`,
+      username: userInfo.name,
+      email: userInfo.email
+    }
+
+    const { account, username, email } = payload
+
+    // 判定資料庫是否有此帳號，有就登入，沒有就註冊後登入
+    const snapshot = await firebase.database().ref().child("users").child(account).get();
+
+    const token = jwt.sign({ account: account.toString() }, SECRET, { expiresIn: '1h' })
+
+    if (snapshot.exists()) {
+      res.status(200).json({ code: 200, message: 'success', data: { token }})
+    } else {
+      firebase.database().ref(`users/${account}`).set({
+        account,
+        username,
+        email,
+        likeList: ''
+      })
+      res.status(200).json({ code: 200, message: 'success', data: { token }})
+    }
   }).catch((err) => {
     res.status(400).json({ code: 998, message: err.message })
   });

@@ -21,7 +21,7 @@ const socials = [
     name: 'google',
     id: 'google-btn',
     class: 'bg-green-600',
-    disabled: true,
+    disabled: false,
   },
   {
     name: 'facebook',

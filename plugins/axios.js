@@ -12,7 +12,7 @@ export default function ({ $axios, redirect, store }) {
 
     switch (code) {
       case 400:
-        Message.error(error.message)
+        Message.error(response.data.message)
       break;
 
       case 401:
@@ -36,6 +36,6 @@ export default function ({ $axios, redirect, store }) {
   })
 
   $axios.onError(error => {
-    console.log(error.response)
+    // console.log(error)
   })
 }
