@@ -3,7 +3,7 @@ import firebase from '../../plugins/firebase'
 import svgCaptcha from 'svg-captcha' // 驗證碼
 import bcrypt from 'bcrypt' // 加密
 import jwt from 'jsonwebtoken'
-import rp from 'request-promise'
+import axios from 'axios'
 
 const router = express.Router();
 router.use(express.json())
@@ -106,12 +106,10 @@ router.post('/googleLogin', async (req, res) => {
 
   verify().then(async () => {
     // 拿到帳號個人信息
-    let userInfo = await rp({
+    let { data:userInfo } = await axios({
       method: 'get',
       url: `https://oauth2.googleapis.com/tokeninfo?id_token=${id_token}`,
     })
-
-    userInfo = JSON.parse(userInfo)
 
     const payload = {
       account: `google_${userInfo.sub}`,

@@ -6,7 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "heroku-postbuild" : "npm run build",
+    "heroku-postbuild": "npm run build",
     "generate": "nuxt generate",
     "tailwind-config-viewer": "tailwind-config-viewer -o"
   },
@@ -24,7 +24,6 @@
     "pug": "^3.0.2",
     "qs": "^6.10.1",
     "querystring": "^0.2.0",
-    "request-promise": "^4.2.6",
     "svg-captcha": "^1.4.0",
     "vue-avatar": "^2.3.3",
     "vue-youtube-embed": "^2.2.2"
