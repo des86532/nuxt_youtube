@@ -19,12 +19,7 @@ $ npm run generate
 ## Features
 
 - [X] RWD
-- [ ] PWA
 - [X] use firebase
-- [ ] use mongo DB
-- [ ] unit test
-- [ ] github circleCI
-- [ ] bot
 - [X] infinite scroll
 - [ ] floating window like twitch
 - [ ] third party login
