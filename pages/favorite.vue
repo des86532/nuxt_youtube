@@ -1,7 +1,10 @@
 <template lang="pug">
   .grid.grid-cols-1.pt-8.px-6.gap-x-4.gap-y-6(class="tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4")
     client-only(placeholder="loadingX...")
-      Card(v-for="video in favoriteList.items" :key="video.id" :video="video" @click="goWatch(video.id)" @addLike="updateLikeStatus(video.id)" liked)
+      template(v-if="favoriteList.items.length === 0")
+        span 沒有資料
+      template(v-else)
+        Card(v-for="video in favoriteList.items" :key="video.id" :video="video" @click="goWatch(video.id)" @addLike="updateLikeStatus(video.id)" liked)
 </template>
 
 <script>

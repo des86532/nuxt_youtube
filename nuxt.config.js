@@ -48,7 +48,7 @@ export default {
 
   // server
   server: {
-    port: 8000,
+    port: process.env.PORT || 8000,
   },
 
   router: {
@@ -80,8 +80,7 @@ export default {
   },
 
   axios: {
-    baseURL: process.env.API_HOST || 'http://localhost:8000/api',
-    browserBaseURL: process.env.API_HOST || 'http://localhost:8000/api'
+    browserBaseURL: process.env.BASE_URL || 'http://localhost:8000/api'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
