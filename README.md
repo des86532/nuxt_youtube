@@ -25,7 +25,7 @@ $ npm run generate
 - [ ] unit test
 - [ ] github circleCI
 - [ ] bot
-- [ ] infinite scroll
+- [X] infinite scroll
 - [ ] floating window like twitch
 - [ ] third party login
   - [X] google
@@ -37,7 +37,6 @@ $ npm run generate
 
 - [X] login
 - [X] register
-- [ ] forget password
 - [X] add youtube api
 - [X] favorite page
 - [ ] bug: 401 & 403 error redirect login
