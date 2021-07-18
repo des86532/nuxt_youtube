@@ -11,7 +11,6 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'google-signin-client_id', content: '748419381762-0edvmckcmv5hf576m9ved8ccot05o35j.apps.googleusercontent.com' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -86,13 +85,18 @@ export default {
   publicRuntimeConfig: {
     axios: {
       browserBaseURL: process.env.BROWSER_BASE_URL
-    }
+    },
   },
 
   privateRuntimeConfig: {
     axios: {
       baseURL: process.env.BASE_URL
     }
+  },
+
+  env: {
+    google_client_id: process.env.GOOGLE_CLIENT_ID,
+    firebase_apikey: process.env.FIREBASE_APIKEY
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

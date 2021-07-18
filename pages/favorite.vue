@@ -1,10 +1,10 @@
 <template lang="pug">
   .grid.grid-cols-1.pt-8.px-6.gap-x-4.gap-y-6(class="tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4")
-    client-only(placeholder="loadingX...")
-      template(v-if="favoriteList.items.length === 0")
+    client-only(placeholder="loading...")
+      template(v-if="videoList.length === 0")
         span 沒有資料
       template(v-else)
-        Card(v-for="video in favoriteList.items" :key="video.id" :video="video" @click="goWatch(video.id)" @addLike="updateLikeStatus(video.id)" liked)
+        Card(v-for="video in videoList" :key="video.id" :video="video" @click="goWatch(video.id)" @addLike="updateLikeStatus(video.id)" liked)
 </template>
 
 <script>
@@ -15,7 +15,12 @@ export default {
   components: {
     Card,
   },
-  middleware: ['auth'],
+  middleware: 'auth',
+  data() {
+    return {
+      videoList: []
+    }
+  },
   methods: {
     goWatch(id) {
       $nuxt.$router.push({ name: 'watch', query: { id } })
@@ -25,10 +30,10 @@ export default {
     },
   },
 
-  computed: {
-    favoriteList() {
-      return this.$store.state.list.favoriteList
-    }
+  mounted() {
+    this.$store.dispatch('list/getFavoriteList').then((res) => {
+      this.videoList = res.items
+    })
   },
 }
 </script>

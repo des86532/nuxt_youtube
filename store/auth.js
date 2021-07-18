@@ -19,7 +19,7 @@ export const actions = {
   thirdLogin({ dispatch, commit }, type) {
     switch (type) {
       case 'google':
-        const client_id = '748419381762-0edvmckcmv5hf576m9ved8ccot05o35j.apps.googleusercontent.com'
+        const client_id = process.env.google_client_id
         let token;
         gapi.load('auth2', async () => {
           let auth2 = await gapi.auth2.init({

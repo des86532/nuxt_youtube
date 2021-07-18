@@ -11,7 +11,6 @@ export const actions = {
       try {
         await commit('auth/setToken', localStorage.token)
         await dispatch('user/getUserInfo')
-        await dispatch('list/getFavoriteList')
       } catch(err) {
       }
     }
