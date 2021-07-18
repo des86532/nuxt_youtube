@@ -96,7 +96,8 @@ export default {
 
   env: {
     google_client_id: process.env.GOOGLE_CLIENT_ID,
-    firebase_apikey: process.env.FIREBASE_APIKEY
+    // google & firebase
+    apikey: process.env.APIKEY
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

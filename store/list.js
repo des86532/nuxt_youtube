@@ -23,7 +23,7 @@ export const actions = {
           chart: 'mostPopular',
           regionCode: 'tw',
           maxResults: 20,
-          key: process.env.firebase_apikey,
+          key: process.env.apikey,
           pageToken
         },
         paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),
@@ -41,7 +41,7 @@ export const actions = {
         },
         params: {
           part: 'snippet',
-          key: process.env.firebase_apikey,
+          key: process.env.apikey,
           q: searchText,
           regionCode: 'tw',
           maxResults: 10,
@@ -65,7 +65,7 @@ export const actions = {
           part: ['contentDetails', 'liveStreamingDetails', 'localizations', 'player' ,'recordingDetails' , 'snippet', 'statistics', 'status'],
           regionCode: 'tw',
           maxResults: 20,
-          key: process.env.firebase_apikey,
+          key: process.env.apikey,
         },
         paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'comma' }),
       }).then((res) => {

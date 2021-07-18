@@ -5,7 +5,7 @@ import "firebase/auth";
 import "firebase/database";
 
 var firebaseConfig = {
-  apiKey: process.env.firebase_apikey,
+  apiKey: process.env.apikey,
   authDomain: "nuxt--313607.firebaseapp.com",
   databaseURL: "https://nuxt--313607-7fba9.asia-southeast1.firebasedatabase.app",
   projectId: "nuxt-youtube-313607",
