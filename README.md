@@ -21,7 +21,7 @@ $ npm run generate
 - [X] RWD
 - [X] use firebase
 - [X] infinite scroll
-- [ ] floating window like twitch
+- [X] floating window like twitch
 - [ ] third party login
   - [X] google
   - [ ] faceboook
