@@ -1,7 +1,7 @@
 <template lang="pug">
-  .text-center.relative.my-0.mx-auto.transform(class="top-1/2 w-1/2 -translate-y-1/2")
+  .text-center.relative.my-0.mx-auto.transform(class="top-1/2 pad:w-3/4 tablet:w-1/2 -translate-y-1/2")
     h1.text-5xl.pb-10 註冊
-    .inline-block.w-full
+    .inline-block.w-full.max-w-xs(class="tablet:max-w-md")
       form.block.text-lg(@submit.prevent="submit")
         .block.border.mb-4
           input.w-full.h-full.p-4(type="text" placeholder="請輸入帳號" v-model="form.account" required)

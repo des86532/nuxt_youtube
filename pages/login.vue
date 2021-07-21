@@ -6,6 +6,8 @@
           input.w-full.h-full.p-4(id="account" type="text" placeholder="請輸入帳號" v-model="form.account" required)
         .block.border.mb-4
           input.w-full.h-full.p-4(id="password" type="password" placeholder="請輸入密碼" v-model="form.password" required)
+        .block.text-left.mb-2
+          span 測試帳號密碼: test 123123
         .block
           Button.mb-4.w-full.bg-red-600(type="submit" text="登入" )
           Button.mb-4.w-full.bg-yellow-800(type="button" text="註冊" @click="register")
@@ -51,8 +53,8 @@ export default {
     return {
       socials,
       form: {
-        account: 'neilyang',
-        password: 'qwer1234',
+        account: 'test',
+        password: '123123',
       }
     }
   },
