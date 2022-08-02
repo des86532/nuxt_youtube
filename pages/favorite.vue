@@ -16,9 +16,9 @@ export default {
     Card,
   },
   middleware: 'auth',
-  data() {
-    return {
-      videoList: []
+  computed: {
+    videoList() {
+      return this.$store.state.list.favoriteList
     }
   },
   methods: {
@@ -31,9 +31,7 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('list/getFavoriteList').then((res) => {
-      this.videoList = res.items
-    })
+    this.$store.dispatch('list/getFavoriteList')
   },
 }
 </script>
