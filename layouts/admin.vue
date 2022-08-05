@@ -1,11 +1,11 @@
 <template lang="pug">
-  .relative.h-screen
-    Header(:username="userInfo.username")
-    .flex.flex-grow.h-full.pt-14
-      client-only
-        Sidebar(:isMobile="isMobile")
-      Nuxt.h-full.w-full.overflow-auto
-    FloatingWindow(v-if="!isMobile && showFloatingWindow" @close="closeFloating")
+.relative.h-screen
+  Header(:username="userInfo.username")
+  .flex.flex-grow.h-full.pt-14
+    client-only
+      Sidebar(:isMobile="isMobile")
+    Nuxt.h-full.w-full.overflow-auto
+  FloatingWindow(v-if="!isMobile && showFloatingWindow" @close="closeFloating")
 </template>
 
 <script>

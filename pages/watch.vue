@@ -1,7 +1,7 @@
 <template lang="pug">
-  client-only(placeholder="Loading...")
-    .flex.justify-center
-      youtube(host="https://www.youtube-nocookie.com" :video-id="videoId" :player-width="videoWidth" :player-height="videoHeight")
+client-only(placeholder="Loading...")
+  .flex.justify-center
+    youtube(host="https://www.youtube-nocookie.com" :video-id="videoId" :player-width="videoWidth" :player-height="videoHeight")
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
 
   methods: {
     onResize() {
-      this.videoWidth = window.innerWidth >= 1200 ? 1120 : window.innerWidth * 0.9;
+      this.videoWidth = window.innerWidth >= 1200 ? 1120 : window.innerWidth < 720 ? window.innerWidth : window.innerWidth * 0.9;
       this.videoHeight = (this.videoWidth / 16) * 9;
     }
   },

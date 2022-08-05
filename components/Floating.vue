@@ -1,10 +1,10 @@
 <template lang="pug">
-  client-only(placeholder="Loading...")
-    .w-80.fixed.bottom-2(:class="position === 'left' ? 'left-2' : 'right-2'" ref="dragItem" @dragend="onDragend" draggable)
-      .w-full.h-8.bg-black.text-right
-        .w-8.h-8.text-white.inline-flex.items-center.justify-center.cursor-pointer(@click="close")
-          i.fas.fa-window-close
-      youtube(v-if="videoId" host="https://www.youtube-nocookie.com" :video-id="videoId" :player-width="videoWidth" :player-height="videoHeight")
+client-only(placeholder="Loading...")
+  .w-80.fixed.bottom-2(:class="position === 'left' ? 'left-2' : 'right-2'" ref="dragItem" @dragend="onDragend" draggable)
+    .w-full.h-8.bg-black.text-right
+      .w-8.h-8.text-white.inline-flex.items-center.justify-center.cursor-pointer(@click="close")
+        i.fas.fa-window-close
+    youtube(v-if="videoId" host="https://www.youtube-nocookie.com" :video-id="videoId" :player-width="videoWidth" :player-height="videoHeight")
 </template>
 
 <script>
